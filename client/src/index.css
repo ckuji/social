@@ -1,0 +1,16 @@
+@import "~materialize-css/dist/css/materialize.min.css";
+
+.authContainer {
+    width: 500px;
+    margin: 200px auto 0;
+}
+
+.btn-authPage {
+    margin-right: 20px;
+}
+
+.preloader-mainHttp {
+    display: flex;
+    justify-content: center;
+    padding-top: 2rem
+}
