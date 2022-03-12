@@ -1,0 +1,225 @@
+//@import "~materialize-css/dist/css/materialize.min.css";
+
+body {
+    margin: 0;
+    font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', 'Roboto', 'Oxygen',
+    'Ubuntu', 'Cantarell', 'Fira Sans', 'Droid Sans', 'Helvetica Neue',
+    sans-serif;
+    -webkit-font-smoothing: antialiased;
+    -moz-osx-font-smoothing: grayscale;
+}
+
+*,
+*:after,
+*:before {
+    box-sizing: border-box;
+}
+
+h1, h2, h3, h4, h5, h6 {
+    margin: 0;
+}
+
+a,
+a:hover {
+    color: #000;
+    text-decoration: none;
+}
+
+ul {
+    margin: 0;
+    padding: 0;
+}
+
+ul li {
+    list-style-type: none;
+}
+
+.authContainer {
+    width: 100%;
+    height: 100%;
+    max-width: 1180px;
+    margin: 0 auto;
+    display: grid;
+    grid-template-columns: 300px 1fr;
+    grid-template-rows: minmax(100vh, min-content);
+    position: relative;
+
+    .errorMessage {
+        min-width: 200px;
+        padding: 10px;
+        position: absolute;
+        top: 50px;
+        right: 100px;
+        border: 1px solid #fff;
+        color: #fff;
+        display: flex;
+        justify-content: center;
+        animation-name: errorMove;
+        animation-duration: 2s;
+    }
+
+    @keyframes errorMove {
+        from {
+            top: 100px;
+        }
+        to {
+            top: 50px;
+        }
+    }
+
+    &-sidebar {
+        background-color: #303030;
+        padding-top: 10px;
+
+        li {
+            padding-top: 9px;
+            color: #fff;
+            border: 1px solid #fff;
+            border-radius: 8px;
+            height: 40px;
+            margin: 0 auto 10px;
+            width: 280px;
+            text-align: center;
+
+            &.active {
+                background-color: #191919;
+            }
+
+            &:hover {
+                background-color: #999999;
+                color: #fff;
+                cursor: pointer;
+                transition: 0.1s;
+            }
+        }
+
+    }
+
+    &-content {
+        background-color: #515151;
+        padding: 10px;
+    }
+}
+
+.container {
+    width: 100%;
+    max-width: 1180px;
+    margin: 0 auto;
+    display: grid;
+    grid-template-columns: 300px 1fr;
+    grid-template-rows: 80px minmax(100vh, min-content);
+    grid-template-areas:
+          "header header"
+          "sidebar content";
+
+    &-header {
+        grid-area: header;
+        width: 100%;
+        background-color: #999999;
+    }
+
+    &-sidebar {
+        padding-top: 10px;
+        grid-area: sidebar;
+        background-color: #303030;
+
+        &__unit {
+            padding-top: 9px;
+            color: #fff;
+            border: 1px solid #fff;
+            border-radius: 8px;
+            height: 40px;
+            margin: 0 auto 10px;
+            width: 280px;
+            display: flex;
+            justify-content: center;
+
+            &.active {
+                background-color: #191919;
+            }
+
+            &:hover {
+                background-color: #999999;
+                color: #fff;
+                cursor: pointer;
+                transition: 0.1s;
+            }
+        }
+    }
+
+    &-content {
+        grid-area: content;
+        background-color: #515151;
+        padding: 10px;
+
+        & .avatarWrapper {
+            width: 70px;
+            height: 70px;
+
+            & img {
+                width: 100%;
+            }
+        }
+
+        & .userWrapper {
+            display: flex;
+            margin-bottom: 20px;
+
+            & .userContent {
+                padding-left: 10px;
+            }
+
+            & .userButton {
+                background-color: #e9e9ed;
+                border-radius: 2px;
+                margin-right: 10px;
+                padding: 0 5px;
+                font-size: 15px;
+
+                &:hover {
+                    cursor: pointer;
+                    background-color: #50c4de;
+                    transition: 0.2s;
+                }
+            }
+
+            &-status {
+                color: #fff;
+            }
+
+            &-buttons {
+                margin-top: 30px;
+            }
+        }
+
+        & .dialogWrapper {
+            width: 500px;
+            height: 400px;
+            padding: 5px;
+            background-color: #e9e9ed;
+        }
+
+        & .dialogInput {
+            width: 500px;
+            min-height: 100px;
+            border: none;
+        }
+
+        & .dialogButton {
+            margin-top: 2px;
+            padding-top: 2px;
+            color: #000;
+            font-size: 17px;
+            border: 2px solid #fff;
+            border-radius: 8px;
+            height: 30px;
+            width: 180px;
+            display: flex;
+            justify-content: center;
+        }
+    }
+
+    h1 {
+        color: #fff;
+    }
+}
