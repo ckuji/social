@@ -18,12 +18,25 @@ router.post(
             const message = new Message({
                 sender: req.user.userId,
                 recipient: req.params.id,
-                textValue
+                text: textValue
             })
 
             await message.save()
 
-            return res.status(201).json({message: 'Сообщение добавлено'})
+            return res.status(201).json({message: 'Сообщение отправлено'})
+
+        } catch (e) {
+            res.status(500).json({message: 'Что-то пошло не так, попробуйте снова'})
+        }
+    }
+)
+
+router.get(
+    '/',
+    auth,
+    async (req, res) => {
+        try {
+
 
         } catch (e) {
             res.status(500).json({message: 'Что-то пошло не так, попробуйте снова'})

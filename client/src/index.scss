@@ -44,20 +44,6 @@ ul li {
     grid-template-rows: minmax(100vh, min-content);
     position: relative;
 
-    .errorMessage {
-        min-width: 200px;
-        padding: 10px;
-        position: absolute;
-        top: 50px;
-        right: 100px;
-        border: 1px solid #fff;
-        color: #fff;
-        display: flex;
-        justify-content: center;
-        animation-name: errorMove;
-        animation-duration: 2s;
-    }
-
     @keyframes errorMove {
         from {
             top: 100px;
@@ -111,6 +97,7 @@ ul li {
     grid-template-areas:
           "header header"
           "sidebar content";
+    position: relative;
 
     &-header {
         grid-area: header;
@@ -222,4 +209,18 @@ ul li {
     h1 {
         color: #fff;
     }
+}
+
+.errorMessage {
+    min-width: 200px;
+    padding: 10px;
+    position: absolute;
+    top: 50px;
+    right: 100px;
+    border: 1px solid #fff;
+    color: #fff;
+    display: flex;
+    justify-content: center;
+    animation-name: errorMove;
+    animation-duration: 2s;
 }
