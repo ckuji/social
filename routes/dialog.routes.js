@@ -17,7 +17,7 @@ router.post(
 
             const message = new Message({
                 sender: req.user.userId,
-                recipient: req.params.id,
+                participants: [req.user.userId, req.params.id],
                 text: textValue
             })
 
@@ -31,17 +31,6 @@ router.post(
     }
 )
 
-router.get(
-    '/',
-    auth,
-    async (req, res) => {
-        try {
 
-
-        } catch (e) {
-            res.status(500).json({message: 'Что-то пошло не так, попробуйте снова'})
-        }
-    }
-)
 
 module.exports = router

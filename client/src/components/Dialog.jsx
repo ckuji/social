@@ -8,6 +8,7 @@ import {ErrorMessage} from "./ErrorMessage";
 
 export const Dialog = () => {
     const [textValue, setTextValue] = useState('')
+    const [messageList, setMessageList] = useState([])
     const {request} = useHttp()
     const {token} = useContext(AuthContext)
     const userId = useParams().id
@@ -17,16 +18,6 @@ export const Dialog = () => {
     const onChangeHandler = (event) => {
         setTextValue(event.target.value)
     }
-
-    useEffect(async () => {
-        try {
-            const fetched = await request('/api/dialog_to_user/', 'GET', {userId}, {
-                Authorization: `Bearer ${token}`
-            })
-        } catch (e) {
-
-        }
-    }, [])
 
     const onClickSender = async () => {
         try {
@@ -40,10 +31,28 @@ export const Dialog = () => {
         }
     }
 
+    useEffect(async () => {
+        try {
+            const fetched = await request(`/api/messages/${userId}`, 'GET', null, {
+                Authorization: `Bearer ${token}`
+            })
+            setMessageList(fetched.data)
+            console.log(messageList)
+        } catch (e) {
+            message(e.message)
+        }
+    }, [onClickSender])
+
     return (
         <>
             <div className="dialogWrapper">
-                Диалог с пользователем
+                {
+                    messageList.map((item, index) =>
+                        <div key={`${item}_${index}`}>
+                            {item.text}
+                        </div>
+                    )
+                }
             </div>
             <textarea
                 value={textValue}
@@ -58,8 +67,13 @@ export const Dialog = () => {
             >
                 Отправить
             </button>
+            <button
+                className="dialogButton"
+            >
+                Получить
+            </button>
             {
-                errorState.errorExist && <ErrorMessage message={errorState.message} />
+                errorState.errorExist && <ErrorMessage message={errorState.message}/>
             }
         </>
     )
